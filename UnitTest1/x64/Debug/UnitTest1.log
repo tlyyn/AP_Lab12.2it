@@ -1,4 +1,3 @@
-﻿  pch.cpp
-  UnitTest1.cpp
-     Creating library C:\Users\linta\source\repos\AP_Lab12.2\x64\Debug\UnitTest1.lib and object C:\Users\linta\source\repos\AP_Lab12.2\x64\Debug\UnitTest1.exp
+﻿  UnitTest1.cpp
+C:\Users\linta\source\repos\AP_Lab12.2\AP_Lab12.2\Source.cpp(60,9): warning C4101: 'x': unreferenced local variable
   UnitTest1.vcxproj -> C:\Users\linta\source\repos\AP_Lab12.2\x64\Debug\UnitTest1.dll

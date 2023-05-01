@@ -6,31 +6,27 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace LinkedListUnitTest
 {
-    TEST_CLASS(SortListUnitTest)
+    TEST_CLASS(UnitTest1)
     {
     public:
-        TEST_METHOD(TestSortList)
+
+        TEST_METHOD(TestMethod1)
         {
-            // Arrange
-            Elem* L = NULL;
-            AddToList(L, 6);
-            AddToList(L, 2);
-            AddToList(L, 8);
-            AddToList(L, 2);
-            AddToList(L, 9);
-            AddToList(L, 3);
-            int expected[] = { 2, 2, 3, 6, 8, 9 };
-            int i = 0;
+            // Test case 1: Empty list
+            Elem* L1 = nullptr;
+            Assert::IsTrue(isNonDescending(L1));
 
-            // Act
-            SortList(L);
+            // Test case 2: Single element list
+            Elem* L2 = new Elem{ 1, nullptr };
+            Assert::IsTrue(isNonDescending(L2));
 
-            // Assert
-            while (L != NULL) {
-                Assert::AreEqual(expected[i], L->info);
-                L = L->link;
-                i++;
-            }
+            // Test case 3: Non-descending list
+            Elem* L3 = new Elem{ 1, new Elem{2, new Elem{3, nullptr}} };
+            Assert::IsTrue(isNonDescending(L3));
+
+            // Test case 4: Descending list
+            Elem* L4 = new Elem{ 3, new Elem{2, new Elem{1, nullptr}} };
+            Assert::IsFalse(isNonDescending(L4));
         }
     };
 }

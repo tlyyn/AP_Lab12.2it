@@ -1,74 +1,63 @@
 ﻿#include <iostream>
+using namespace std;
 
 struct Elem {
     int info;
     Elem* link;
 };
 
-int Count(Elem* L) {
-    int k = 0;
-    while (L != NULL) {
-        k++;
-        L = L->link;
-    }
-    return k;
-}
-
-void SortList(Elem*& L) {
-    int n = Count(L);
-    if (n <= 1) {
-        return;
-    }
-    for (int i = 0; i < n - 1; i++) {
-        Elem* p = L;
-        for (int j = 0; j < n - i - 1; j++) {
-            if (p->info > p->link->info) {
-                int tmp = p->info;
-                p->info = p->link->info;
-                p->link->info = tmp;
-            }
-            p = p->link;
+// generates a new list with values entered by the user from keyboard
+Elem* generateList() {
+    int n;
+    cout << "Enter number of elements: ";
+    cin >> n;
+    Elem* head = nullptr;
+    Elem* tail = nullptr;
+    for (int i = 0; i < n; i++) {
+        int x;
+        cout << "Enter value for element " << i + 1 << ": ";
+        cin >> x;
+        Elem* p = new Elem;
+        p->info = x;
+        p->link = nullptr;
+        if (head == nullptr) {
+            head = tail = p;
+        }
+        else {
+            tail->link = p;
+            tail = p;
         }
     }
+    return head;
 }
 
-void PrintList(Elem* L) {
-    while (L != NULL) {
-        std::cout << L->info << " ";
+// prints the values of all elements in a list
+void printList(Elem* L) {
+    while (L != nullptr) {
+        cout << L->info << " ";
         L = L->link;
     }
-    std::cout << std::endl;
+    cout << endl;
 }
 
-void AddToList(Elem*& L, int value) {
-    Elem* newElem = new Elem;
-    newElem->info = value;
-    newElem->link = NULL;
-
-    if (L == NULL) {
-        L = newElem;
-    }
-    else {
-        Elem* p = L;
-        while (p->link != NULL) {
-            p = p->link;
+// checks if a list is ordered in non-descending order
+bool isNonDescending(Elem* L) {
+    while (L != nullptr && L->link != nullptr) {
+        if (L->info > L->link->info) {
+            return false;
         }
-        p->link = newElem;
+        L = L->link;
     }
+    return true;
 }
 
+// main program
 int main() {
-    Elem* L = NULL;
-    AddToList(L, 6);
-    AddToList(L, 2);
-    AddToList(L, 8);
-    AddToList(L, 1);
-    AddToList(L, 9);
-    AddToList(L, 3);
-    std::cout << "Original List: ";
-    PrintList(L);
-    SortList(L);
-    std::cout << "Sorted List: ";
-    PrintList(L);
+    Elem* L = generateList();
+    cout << "List: ";
+    printList(L);
+    cout << "Is non-descending: " << boolalpha << isNonDescending(L) << endl;
+    int x;
+   
     return 0;
 }

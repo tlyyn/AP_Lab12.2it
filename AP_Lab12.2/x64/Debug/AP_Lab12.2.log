@@ -1,2 +1,3 @@
 ﻿  Source.cpp
+C:\Users\linta\source\repos\AP_Lab12.2\AP_Lab12.2\Source.cpp(60,9): warning C4101: 'x': unreferenced local variable
   AP_Lab12.2.vcxproj -> C:\Users\linta\source\repos\AP_Lab12.2\x64\Debug\AP_Lab12.2.exe
